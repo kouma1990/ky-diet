@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Models\DietData;
+
+use Carbon\Carbon;
+
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +29,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $dates = DietData::select(["date"])->groupBy("date")->orderBy("date")->get()->pluck("date");
+        $diet_data = DietData::orderBy("date")->get();
+        return view('home', compact('dates', 'diet_data'));
+    }
+    
+    public function createDietData(Request $request)
+    {
+        // date, user_idで一致するものがあればupdate, なければcreate
+        DietData::updateOrCreate(
+            [
+                "date" => Carbon::today()->format("Y-m-d"),
+                "user_id" => \Auth::user()->id,
+            ],[
+                "weight" => $request->weight,
+            ]);
+        return redirect()->back();
     }
 }

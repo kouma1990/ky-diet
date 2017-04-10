@@ -1,0 +1,4 @@
+[10-Apr-2017 16:28:14 Asia/Tokyo] PHP Fatal error:  Class 'App\Models\Authenticatable' not found in /home/ubuntu/workspace/ky-diet/app/Models/DietData.php on line 7
+[10-Apr-2017 16:28:28 Asia/Tokyo] PHP Fatal error:  Class 'App\Models\Authenticatable' not found in /home/ubuntu/workspace/ky-diet/app/Models/DietData.php on line 7
+[10-Apr-2017 16:28:32 Asia/Tokyo] PHP Fatal error:  Class 'App\Models\Authenticatable' not found in /home/ubuntu/workspace/ky-diet/app/Models/DietData.php on line 7
+[10-Apr-2017 16:29:46 Asia/Tokyo] PHP Fatal error:  Class 'App\Models\Authenticatable' not found in /home/ubuntu/workspace/ky-diet/app/Models/DietData.php on line 7
