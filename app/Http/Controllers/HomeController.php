@@ -41,7 +41,7 @@ class HomeController extends Controller
         // date, user_idで一致するものがあればupdate, なければcreate
         DietData::updateOrCreate(
             [
-                "date" => Carbon::today()->format("Y-m-d"),
+                "date" => $request->date,
                 "user_id" => \Auth::user()->id,
             ],[
                 "weight" => $request->weight,

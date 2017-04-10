@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+
+@endsection
+
 @section('content')
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -22,7 +26,12 @@
                     <form method="POST" action="{{url('diet-data')}}" accept-charset="UTF-8" class="form-horizontal">
                          {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="weight">Today : </label>
+                            <label class="col-sm-2 control-label" for="date">Date : </label>
+                            <div class="col-sm-2">
+                                <input class="form-control" name="date" tyep="text" id="date">
+                            </div>
+                            
+                            <label class="col-sm-2 control-label" for="weight">W : </label>
                             <div class="col-sm-2">
                                 <input class="form-control" name="weight" tyep="number" id="weight">
                             </div>
@@ -71,6 +80,17 @@
               spanGaps: true
             }]
           }
+        });
+    </script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.ja.min.js"></script>
+    
+    <script>
+        $('#date').datepicker({
+            language: 'ja',
+            endDate: "{{Carbon\Carbon::today()}}",
         });
     </script>
 @endsection
