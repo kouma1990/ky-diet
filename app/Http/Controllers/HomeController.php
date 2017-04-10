@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Models\DietData;
 
+use App\Http\Requests\CreateDietData;
+
 use Carbon\Carbon;
 
 
@@ -34,7 +36,7 @@ class HomeController extends Controller
         return view('home', compact('dates', 'diet_data'));
     }
     
-    public function createDietData(Request $request)
+    public function createDietData(CreateDietData $request)
     {
         // date, user_idで一致するものがあればupdate, なければcreate
         DietData::updateOrCreate(
