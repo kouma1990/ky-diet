@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="date">Date : </label>
                             <div class="col-sm-2">
-                                <input class="form-control" name="date" tyep="text" id="date">
+                                <input class="form-control" name="date" tyep="text" id="date" value="{{old("date") ?? Carbon\Carbon::today()->format("Y/m/d")}}">
                             </div>
                             
                             <label class="col-sm-2 control-label" for="weight">W : </label>
@@ -36,7 +36,7 @@
                                 <input class="form-control" name="weight" tyep="number" id="weight">
                             </div>
                             <div class="col-sm-2">
-                    			<button type="submit" class="btn btn-default">送信</button>
+                    			<button type="submit" class="btn btn-default">記録</button>
                     		</div>
                         </div>
                     	<div class="form-group">
@@ -44,6 +44,7 @@
                     	</div>
                     </form>
                 </div>
+                <hr>
                 
                 <canvas id="myChart"></canvas>
 
