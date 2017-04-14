@@ -13,11 +13,19 @@ class CreateRelation extends Migration
      */
     public function up()
     {
-        /*********************************************************************************
-        * Warehouse
-        **********************************************************************************/
         Schema::table('diet_data', function ($table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
+        
+        Schema::table('room_invitations', function ($table) {
+           $table->foreign('invited_user_id')->references('id')->on('users')->onDelete('cascade');
+           $table->foreign('room_id')->references('id')->on('users')->onDelete('cascade');
+        });
+        
+        
+        Schema::table('room_user', function ($table) {
+           $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+           $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
         });
     }
 
@@ -28,9 +36,6 @@ class CreateRelation extends Migration
      */
     public function down()
     {
-        /*********************************************************************************
-        * Warehouse
-        **********************************************************************************/
         Schema::table('diet_data', function ($table) {
             $table->dropForeign(['user_id']);
         });

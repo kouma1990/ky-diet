@@ -26,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function Room()
+    {
+        return $this->belongsToMany('App\Models\Room')->withTimestamps();
+    }
+    
+    public function RoomInvitation()
+    {
+        return $this->hasMany('App\Models\RoomInvitation', 'invited_user_id', 'id');
+    }
+    
 }
