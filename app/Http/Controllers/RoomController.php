@@ -28,13 +28,15 @@ class RoomController extends Controller
     
     public function createRoom(Request $reqeust)
     {
-        $room = Room::create(["room_name"=>"test room3", "admin_user_id" => 3]);
+        $room = Room::create(["room_name"=>$reqeust->room_name, "admin_user_id" => \Auth::user()->id]);
         $room->users()->attach($room->admin_user_id);
-        return "createRoom";
+        return redirect()->back();
     }
     
     public function deleteRoom(Reqeust $reqeust)
     {
         return "deleteRoom";
+        
+        return redirect()->back();
     }
 }

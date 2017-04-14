@@ -15,7 +15,9 @@
                 </div>
 
                 <div class="panel-body">
-                    <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>new</button>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#newRoomModal">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>New
+                    </button>
                     <br><br>
                     <ul class="list-group">
                         @foreach($rooms as $room)
@@ -28,5 +30,27 @@
     </div>
 </div>
 
+
+<!-- モーダル・ダイアログ -->
+<div class="modal fade" id="newRoomModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title">New Room</h4>
+			</div>
+			<form method="POST" action="{{url('/room')}}">
+			    {{ csrf_field() }}
+    			<div class="modal-body">
+    				<input class="form-control" name="room_name" type="text">
+    			</div>
+    			<div class="modal-footer">
+    				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    				<button type="submit" class="btn btn-primary">Create</button>
+    			</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 @endsection

@@ -55,7 +55,8 @@
           type: 'line',
           data: {
             labels: [ @foreach($dates as $date) '{{$date}}', @endforeach ],
-            datasets: [{
+            datasets: [
+            {
               label: 'K',
               data: [ @foreach($dates as $date) {{count($diet_data->where("date", $date)->where("user_id",1))===0 ? '' : $diet_data->where("date", $date)->where("user_id",1)->first()->weight }}, @endforeach],
               backgroundColor: "rgba(153,255,51,0.4)",
