@@ -27,14 +27,24 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
+    public function diet_datas()
+    {
+        return $this->hasMany('App\Models\DietData', 'user_id', 'id');
+    }
+    
     public function rooms()
     {
         return $this->belongsToMany('App\Models\Room')->withTimestamps();
     }
     
-    public function room_invitations()
+    public function invited_room_invitations()
     {
         return $this->hasMany('App\Models\RoomInvitation', 'invited_user_id', 'id');
+    }
+    
+    public function inviting_room_invitations()
+    {
+        return $this->hasMany('App\Models\RoomInvitation', 'inviting_user_id', 'id');
     }
     
 }

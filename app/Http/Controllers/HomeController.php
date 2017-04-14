@@ -30,9 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dates = DietData::select(["date"])->groupBy("date")->orderBy("date")->get()->pluck("date");
-        $diet_data = DietData::orderBy("date")->get();
-        return view('home', compact('dates', 'diet_data'));
+        $dates = \Auth::user()->diet_datas()->select(["date"])->groupBy("date")->orderBy("date")->get()->pluck("date");
+        $diet_data = \Auth::user()->diet_datas()->orderBy("date")->get();
+        return view('home.index', compact('dates', 'diet_data'));
     }
     
     public function createDietData(CreateDietData $request)
@@ -46,5 +46,11 @@ class HomeController extends Controller
                 "weight" => $request->weight,
             ]);
         return redirect()->back();
+    }
+    
+    public function showRoomList()
+    {
+        $rooms = \Auth::user()->rooms;
+        return view('home.room_list', compact('rooms'));
     }
 }

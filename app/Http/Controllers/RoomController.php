@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Room;
 
 class RoomController extends Controller
 {
@@ -16,20 +17,23 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showRoom()
+    public function showRoom($id)
     {
-        return "room";
+        $room = Room::find($id);
+        return $room;
         //$dates = DietData::select(["date"])->groupBy("date")->orderBy("date")->get()->pluck("date");
         //$diet_data = DietData::orderBy("date")->get();
         //return view('home', compact('dates', 'diet_data'));
     }
     
-    public function createRoom()
+    public function createRoom(Request $reqeust)
     {
+        $room = Room::create(["room_name"=>"test room3", "admin_user_id" => 3]);
+        $room->users()->attach($room->admin_user_id);
         return "createRoom";
     }
     
-    public function deleteRoom()
+    public function deleteRoom(Reqeust $reqeust)
     {
         return "deleteRoom";
     }

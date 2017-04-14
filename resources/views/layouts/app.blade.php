@@ -37,7 +37,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         {{ config('app.name', 'KY') }}
                     </a>
                 </div>
@@ -46,6 +46,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        @if (Auth::guest())
+                        
+                        @else
+                            <li><a href="{{ url('/home') }}">Home</a></li>
+                            <li><a href="{{ url('/home/room_list') }}">Room List</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -79,6 +85,16 @@
                 </div>
             </div>
         </nav>
+        
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         @yield('content')
     </div>

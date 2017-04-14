@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Models\DietData;
+use App\Models\Room;
 
 class TestSeeder extends Seeder
 {
@@ -16,6 +17,12 @@ class TestSeeder extends Seeder
         $user = User::create([
             "name" => "y",
             "email" => "yyy@gmail.com",
+            "password" => Hash::make("password"),
+        ]);
+        
+        $user = User::create([
+            "name" => "t",
+            "email" => "ttt@gmail.com",
             "password" => Hash::make("password"),
         ]);
         
@@ -36,5 +43,12 @@ class TestSeeder extends Seeder
         DietData::create(["date"=>"2017-04-06", "weight"=>"65.0", "user_id"=>2]);
         DietData::create(["date"=>"2017-04-08", "weight"=>"64.8", "user_id"=>2]);
         DietData::create(["date"=>"2017-04-09", "weight"=>"64.6", "user_id"=>2]);
+        
+        $room1 = Room::create(["room_name"=>"test room1", "admin_user_id" => 1]);
+        $room2 = Room::create(["room_name"=>"test room2", "admin_user_id" => 2]);
+        $room3 = Room::create(["room_name"=>"test room3", "admin_user_id" => 3]);
+        $room1->users()->attach([1, 2]);
+        $room2->users()->attach([1, 2, 3]);
+        $room3->users()->attach([1, 3]);
     }
 }

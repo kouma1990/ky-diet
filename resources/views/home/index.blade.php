@@ -5,26 +5,16 @@
 @endsection
 
 @section('content')
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Home</div>
 
                 <div class="panel-body">
                     <form method="POST" action="{{url('diet-data')}}" accept-charset="UTF-8" class="form-horizontal">
-                         {{ csrf_field() }}
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="date">Date : </label>
                             <div class="col-sm-2">
@@ -43,12 +33,8 @@
 
                     	</div>
                     </form>
+                     <canvas id="myChart"></canvas>
                 </div>
-                <hr>
-                
-                <canvas id="myChart"></canvas>
-
-               
             </div>
         </div>
     </div>
@@ -66,17 +52,10 @@
           data: {
             labels: [ @foreach($dates as $date) '{{$date}}', @endforeach ],
             datasets: [{
-              label: 'K',
-              data: [ @foreach($dates as $date) {{count($diet_data->where("date", $date)->where("user_id",1))===0 ? '' : $diet_data->where("date", $date)->where("user_id",1)->first()->weight }}, @endforeach],
+              label: '{{ Auth::user()->name }}',
+              data: [ @foreach($dates as $date) {{ $diet_data->where("date", $date)->where("user_id",1)->first()->weight }}, @endforeach],
               backgroundColor: "rgba(153,255,51,0.4)",
               borderColor: "rgba(153,255,51,0.4)",
-              fill:false,
-              spanGaps: true
-            }, {
-              label: 'Y',
-              data: [ @foreach($dates as $date) {{count($diet_data->where("date", $date)->where("user_id",2))===0 ? '' : $diet_data->where("date", $date)->where("user_id",2)->first()->weight }}, @endforeach],
-              backgroundColor: "rgba(255,153,0,0.4)",
-              borderColor: "rgba(255,153,0,0.4)",
               fill:false,
               spanGaps: true
             }]

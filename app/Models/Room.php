@@ -23,5 +23,4 @@ class Room extends Model
     {
         return $this->hasMany("App\Models\RoomInvitation", "room_id", "id");
     }
-    
 }

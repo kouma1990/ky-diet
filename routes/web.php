@@ -12,17 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::post('/diet-data', 'HomeController@createDietData');
+Route::get('/home/room_list', 'HomeController@showRoomList');
 
 Route::get('/room/{id}', 'RoomController@showRoom');
 Route::post('/room', 'RoomController@createRoom');
-Route::delete('/room{id}', 'RoomController@deleteRoom');
+Route::delete('/room/{id}', 'RoomController@deleteRoom');
 
 Route::post('/room-invitation', 'RoomInvitationController@createRoomInvitation');
 Route::patch('/room-invitation/{id}', 'RoomInvitationController@modifyRoomInvitation');
