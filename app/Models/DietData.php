@@ -11,7 +11,7 @@ class DietData extends Model
         'weight', 'date', 'user_id'
     ];
     
-    public function User()
+    public function user()
     {
         return $this->belongsTo("App\User", "user_id", "id");
     }

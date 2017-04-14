@@ -11,7 +11,6 @@ use App\Http\Requests\CreateDietData;
 
 use Carbon\Carbon;
 
-
 class HomeController extends Controller
 {
     /**

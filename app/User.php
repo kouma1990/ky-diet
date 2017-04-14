@@ -27,12 +27,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function Room()
+    public function rooms()
     {
         return $this->belongsToMany('App\Models\Room')->withTimestamps();
     }
     
-    public function RoomInvitation()
+    public function room_invitations()
     {
         return $this->hasMany('App\Models\RoomInvitation', 'invited_user_id', 'id');
     }
