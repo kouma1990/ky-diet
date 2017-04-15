@@ -17,9 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
 Route::post('/diet-data', 'HomeController@createDietData');
+
+Route::get('/home', 'HomeController@index');
 Route::get('/home/room_list', 'HomeController@showRoomList');
+Route::post('/home/setting', 'HomeController@modifySetting');
 
 Route::get('/room/{id}', 'RoomController@showRoom');
 Route::post('/room', 'RoomController@createRoom');

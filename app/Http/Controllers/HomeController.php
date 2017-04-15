@@ -35,6 +35,9 @@ class HomeController extends Controller
         return view('home.index', compact('dates', 'diet_data'));
     }
     
+    /*
+    * 体重を記録する
+    */
     public function createDietData(CreateDietData $request)
     {
         // date, user_idで一致するものがあればupdate, なければcreate
@@ -45,6 +48,23 @@ class HomeController extends Controller
             ],[
                 "weight" => $request->weight,
             ]);
+        return redirect()->back();
+    }
+    
+    /*
+    * デフォルトグラフと色の設定
+    */
+    public function modifySetting(Request $request)
+    {
+        $tmp = preg_replace("/#/", "", $request->color);
+        $color = hexdec(substr($tmp, 0, 2)) . "," . hexdec(substr($tmp, 2, 2)) . "," . hexdec(substr($tmp, 4, 2));
+        
+        \Auth::user()->user_setting()
+                     ->update([
+                         "color" => $color,
+                         "default_chart" => $reqeust->default_chart,       
+                     ]);
+        
         return redirect()->back();
     }
     

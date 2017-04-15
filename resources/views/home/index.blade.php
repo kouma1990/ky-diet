@@ -29,11 +29,34 @@
                     			<button type="submit" class="btn btn-default">記録</button>
                     		</div>
                         </div>
-                    	<div class="form-group">
-
-                    	</div>
                     </form>
-                     <canvas id="myChart"></canvas>
+                    <canvas id="myChart"></canvas>
+                    
+                    <hr>
+                    
+                    <form method="POST" action="{{url('home/setting')}}" accept-charset="UTF-8" class="form-horizontal">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="InputColor">デフォルトグラフ：</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="default_chart">
+                                    <option value="0">Home</option>
+                                    @foreach(Auth::user()->rooms as $room)
+                                        <option value="{{$room->id}}">{{$room->room_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <label class="col-sm-1 control-label" for="InputColor">Color：</label>
+                            <div class="col-sm-2">
+                                <input type="color" class="form-control" id="InputColor" name="color" placeholder="色" value="{{Auth::user()->user_setting->getColorCode()}}">
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-default">設定</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    
                 </div>
             </div>
         </div>
