@@ -16,7 +16,7 @@ class CreateUserSettings extends Migration
         Schema::create('user_settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('color', 32);
-            $table->integer('default_chart');
+            $table->integer('default_chart')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
