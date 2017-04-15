@@ -23,7 +23,7 @@ class CreateRoomInvitationsTable extends Migration
         
         Schema::table('room_invitations', function ($table) {
            $table->foreign('invited_user_id')->references('id')->on('users')->onDelete('cascade');
-           $table->foreign('room_id')->references('id')->on('users')->onDelete('cascade');
+           $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
         });
     }
 

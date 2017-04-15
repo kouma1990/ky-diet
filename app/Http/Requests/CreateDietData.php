@@ -28,4 +28,12 @@ class CreateDietData extends FormRequest
             "weight" => "required|numeric",
         ];
     }
+    
+    public function attributes()
+    {
+        return [
+            "date" => "日付",
+            "weight" => "体重",
+        ];
+    }
 }

@@ -34,19 +34,28 @@ class CreateRoomInvitation extends FormRequest
     
     public function withValidator($validator)
     {
-        $validator->after(function ($validator) {
-            $name = $this->input('name');
-            $room_id = $this->input('room_id');
-            $user_id = User::where("name", "=", $name)->first()->id;
-            $is_invited = RoomInvitation::where("invited_user_id", "=", $user_id)->where("room_id", "=", $room_id)->count();
-            $is_in_room = Room::find($room_id)->users->where("id", $user_id)->count();
-            if($is_invited > 0) {
-                $validator->errors()->add('test', "already invited");
-            }
-            
-            if($is_in_room > 0) {
-                $validator->errors()->add('test', "already in room");
-            }
-        });
+        // rulesを通ったrequestに対して追加でvalidation
+        if(count($validator->errors()) === 0) {
+            $validator->after(function ($validator) {
+                $name = $this->input('name');
+                $room_id = $this->input('room_id');
+                $user_id = User::where("name", "=", $name)->first()->id;
+                $is_invited = RoomInvitation::where("invited_user_id", "=", $user_id)->where("room_id", "=", $room_id)->count();
+                $is_in_room = Room::find($room_id)->users->where("id", $user_id)->count();
+                if($is_invited > 0) {
+                    $validator->errors()->add('test', "already invited");
+                }
+                
+                if($is_in_room > 0) {
+                    $validator->errors()->add('test', "already in room");
+                }
+            });
+        }
+    }
+    
+    public function attributes() {
+        return [
+            'name' => 'ユーザ名',
+        ];
     }
 }

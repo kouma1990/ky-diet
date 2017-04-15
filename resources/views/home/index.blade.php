@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Home</div>
+                <div class="panel-heading">ホーム</div>
 
                 <div class="panel-body">
                     <form method="POST" action="{{url('diet-data')}}" accept-charset="UTF-8" class="form-horizontal">
