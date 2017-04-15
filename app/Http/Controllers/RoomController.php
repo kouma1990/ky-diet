@@ -22,12 +22,7 @@ class RoomController extends Controller
     {
         $room = Room::find($id);
         $dates = DietData::select(["date"])->whereIn("user_id", $room->users->pluck("id"))->groupBy("date")->orderBy("date")->get()->pluck("date");
-        
-       // return $room;
         return view('room.room', compact('dates', 'room'));
-        //$dates = DietData::select(["date"])->groupBy("date")->orderBy("date")->get()->pluck("date");
-        //$diet_data = DietData::orderBy("date")->get();
-        //return view('home', compact('dates', 'diet_data'));
     }
     
     public function createRoom(Request $reqeust)

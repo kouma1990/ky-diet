@@ -14,7 +14,7 @@
 
                 <div class="panel-body">
                     <form method="POST" action="{{url('diet-data')}}" accept-charset="UTF-8" class="form-horizontal">
-                         {{ csrf_field() }}
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="date">Date : </label>
                             <div class="col-sm-2">
@@ -33,6 +33,24 @@
                     	</div>
                     </form>
                     <canvas id="myChart"></canvas>
+                    
+                    <hr>
+                    
+                    <form method="POST" action="{{url('room-invitation')}}" accept-charset="UTF-8" class="form-horizontal">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="InputColor">ユーザ名：</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                            <input type="hidden" name="room_id" value="{{$room->id}}">
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-default">招待</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    
                 </div>
                 
             </div>

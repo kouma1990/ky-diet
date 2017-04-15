@@ -15,7 +15,6 @@ class CreateRoomInvitationsTable extends Migration
     {
         Schema::create('room_invitations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("status")->unsigned();
             $table->integer("inviting_user_id")->unsigned();
             $table->integer("invited_user_id")->unsigned();
             $table->integer("room_id")->unsigned();
