@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">{{ $room->room_name }}</div>
 
                 <div class="panel-body">
                     <form method="POST" action="{{url('diet-data')}}" accept-charset="UTF-8" class="form-horizontal">
@@ -56,21 +56,17 @@
           data: {
             labels: [ @foreach($dates as $date) '{{$date}}', @endforeach ],
             datasets: [
+            @foreach($room->users as $user)
             {
-              label: 'K',
-              data: [ @foreach($dates as $date) {{count($diet_data->where("date", $date)->where("user_id",1))===0 ? '' : $diet_data->where("date", $date)->where("user_id",1)->first()->weight }}, @endforeach],
+              label: '{{ $user->name }}',
+              data: [ @foreach($dates as $date) {{count($user->diet_datas->where("date", $date))===0 ? '' : $user->diet_datas->where("date", $date)->first()->weight }}, @endforeach],
               backgroundColor: "rgba(153,255,51,0.4)",
-              borderColor: "rgba(153,255,51,0.4)",
+              borderColor: "rgba(153,255,51,0.7)",
               fill:false,
               spanGaps: true
-            }, {
-              label: 'Y',
-              data: [ @foreach($dates as $date) {{count($diet_data->where("date", $date)->where("user_id",2))===0 ? '' : $diet_data->where("date", $date)->where("user_id",2)->first()->weight }}, @endforeach],
-              backgroundColor: "rgba(255,153,0,0.4)",
-              borderColor: "rgba(255,153,0,0.4)",
-              fill:false,
-              spanGaps: true
-            }]
+            },
+            @endforeach
+            ]
           }
         });
     </script>

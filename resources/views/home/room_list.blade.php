@@ -16,7 +16,7 @@
 
                 <div class="panel-body">
                     <button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#newRoomModal">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>New
+                        ＋ New
                     </button>
                     <br><br>
                     <ul class="list-group">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\DietData;
 
 class RoomController extends Controller
 {
@@ -20,7 +21,10 @@ class RoomController extends Controller
     public function showRoom($id)
     {
         $room = Room::find($id);
-        return $room;
+        $dates = DietData::select(["date"])->whereIn("user_id", $room->users->pluck("id"))->groupBy("date")->orderBy("date")->get()->pluck("date");
+        
+       // return $room;
+        return view('room.room', compact('dates', 'room'));
         //$dates = DietData::select(["date"])->groupBy("date")->orderBy("date")->get()->pluck("date");
         //$diet_data = DietData::orderBy("date")->get();
         //return view('home', compact('dates', 'diet_data'));

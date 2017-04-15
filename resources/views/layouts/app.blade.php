@@ -61,6 +61,18 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    ☆ <span class="badge">{{count(Auth::user()->invited_room_invitations)}}</span></a>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    @if( count(Auth::user()->invited_room_invitations) === 0 )
+                                        <li><a href="#">No notifications</a></li>
+                                    @else
+                                        <li>yes</li>
+                                    @endif
+                                </ul>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
