@@ -43,11 +43,11 @@ class CreateRoomInvitation extends FormRequest
                 $is_invited = RoomInvitation::where("invited_user_id", "=", $user_id)->where("room_id", "=", $room_id)->count();
                 $is_in_room = Room::find($room_id)->users->where("id", $user_id)->count();
                 if($is_invited > 0) {
-                    $validator->errors()->add('test', "already invited");
+                    $validator->errors()->add('test', "招待済みです。");
                 }
                 
                 if($is_in_room > 0) {
-                    $validator->errors()->add('test', "already in room");
+                    $validator->errors()->add('error', "参加済みです。");
                 }
             });
         }
