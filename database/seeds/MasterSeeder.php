@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Models\UserSetting;
 
 class MasterSeeder extends Seeder
 {
@@ -18,6 +19,12 @@ class MasterSeeder extends Seeder
             "name" => "kouma",
             "email" => "kouma1990@gmail.com",
             "password" => Hash::make("password"),
+        ]);
+        $color = mt_rand(0,255).','.mt_rand(0,255).','.mt_rand(0,255);
+        UserSetting::create([
+           'color' => $color,
+           'default_chart' => 0,
+           'user_id' => $user->id
         ]);
     }
 }

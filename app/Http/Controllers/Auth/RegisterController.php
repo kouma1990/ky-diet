@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Models\UserSetting;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,10 +63,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        
+        $color1 = mt_rand(0,255);
+        $color2 = mt_rand(0,255);
+        $color3 = mt_rand(0,255);
+        
+        $color = $color1 + $color2 + $color3 < 550 ? $color1.','.$color2.','.$color3 : mt_rand(0,200).','.mt_rand(0,200).','.mt_rand(0,200);
+        
+        UserSetting::create([
+           'color' => $color,
+           'default_chart' => 0,
+           'user_id' => $user->id
+        ]);
+        
+        return $user;
     }
 }

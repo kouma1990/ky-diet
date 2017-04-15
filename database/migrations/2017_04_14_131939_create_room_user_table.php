@@ -18,6 +18,11 @@ class CreateRoomUserTable extends Migration
             $table->integer('room_id')->unsigned()->index();
             $table->timestamps();
         });
+        
+        Schema::table('room_user', function ($table) {
+           $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+           $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+        });
     }
 
     /**

@@ -60,8 +60,8 @@
             {
               label: '{{ $user->name }}',
               data: [ @foreach($dates as $date) {{count($user->diet_datas->where("date", $date))===0 ? '' : $user->diet_datas->where("date", $date)->first()->weight }}, @endforeach],
-              backgroundColor: "rgba(153,255,51,0.4)",
-              borderColor: "rgba(153,255,51,0.7)",
+              backgroundColor: "rgba({{ $user->user_setting->color }},0.4)",
+              borderColor: "rgba({{ $user->user_setting->color }},0.7)",
               fill:false,
               spanGaps: true
             },

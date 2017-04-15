@@ -54,8 +54,8 @@
             datasets: [{
               label: '{{ Auth::user()->name }}',
               data: [ @foreach($dates as $date) {{ $diet_data->where("date", $date)->where("user_id",1)->first()->weight }}, @endforeach],
-              backgroundColor: "rgba(153,255,51,0.4)",
-              borderColor: "rgba(153,255,51,0.4)",
+              backgroundColor: "rgba({{ Auth::user()->user_setting->color }},0.4)",
+              borderColor: "rgba({{ Auth::user()->user_setting->color }},0.4)",
               fill:false,
               spanGaps: true
             }]

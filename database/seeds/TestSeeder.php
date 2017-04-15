@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Models\UserSetting;
 use App\Models\DietData;
 use App\Models\Room;
 
@@ -14,16 +15,28 @@ class TestSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
+        $user1 = User::create([
             "name" => "y",
             "email" => "yyy@gmail.com",
             "password" => Hash::make("password"),
         ]);
+        $color = mt_rand(0,255).','.mt_rand(0,255).','.mt_rand(0,255);
+        UserSetting::create([
+           'color' => $color,
+           'default_chart' => 0,
+           'user_id' => $user1->id
+        ]);
         
-        $user = User::create([
+        $user2 = User::create([
             "name" => "t",
             "email" => "ttt@gmail.com",
             "password" => Hash::make("password"),
+        ]);
+        $color = mt_rand(0,255).','.mt_rand(0,255).','.mt_rand(0,255);
+        UserSetting::create([
+           'color' => $color,
+           'default_chart' => 0,
+           'user_id' => $user2->id
         ]);
         
         DietData::create(["date"=>"2017-04-01", "weight"=>"65.0", "user_id"=>1]);

@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
+    public function user_setting()
+    {
+        return $this->hasOne('App\Models\UserSetting', 'user_id', 'id');
+    }
+    
     public function diet_datas()
     {
         return $this->hasMany('App\Models\DietData', 'user_id', 'id');
