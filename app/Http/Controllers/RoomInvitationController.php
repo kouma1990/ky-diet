@@ -24,12 +24,11 @@ class RoomInvitationController extends Controller
     
     public function processRoomInvitation($id, Request $request)
     {
+        $room_invitation = RoomInvitation::find($id);
         if($request->action === "join") {
-            // 参加
-            return "join";
-        } else {
-            // 拒否
-            return "not join";
+            $room_invitation->room->users()->attach([$room_invitation->invited_user_id]);
         }
+        $room_invitation->delete();
+        return redirect()->back();
     }
 }

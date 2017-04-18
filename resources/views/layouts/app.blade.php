@@ -67,7 +67,7 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     @if( count(Auth::user()->invited_room_invitations) === 0 )
-                                        <li><a href="#">お知らせはありません</a></li>
+                                        <li><p class="navbar-text">招待はありません</p></li>
                                     @else
                                         @foreach(Auth::user()->invited_room_invitations as $invitation)
                                             <li><a href="#" data-toggle="modal" data-target="#invitationModal{{$invitation->id}}">{{$invitation->room->room_name}}への招待</a></li>
