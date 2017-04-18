@@ -21,6 +21,12 @@ class RoomController extends Controller
     public function showRoom($id)
     {
         $room = Room::find($id);
+        
+        // 部屋の所属していない場合はhomeにリダイレクト
+        if( $room->users->where("id", \Auth::user()->id)->count() === 0) {
+            return redirect("/home");   
+        }
+        
         $dates = DietData::select(["date"])->whereIn("user_id", $room->users->pluck("id"))->groupBy("date")->orderBy("date")->get()->pluck("date");
         return view('room.room', compact('dates', 'room'));
     }
