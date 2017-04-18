@@ -28,5 +28,5 @@ Route::post('/room', 'RoomController@createRoom');
 Route::delete('/room/{id}', 'RoomController@deleteRoom');
 
 Route::post('/room-invitation', 'RoomInvitationController@createRoomInvitation');
-Route::delete('/room-invitation/{id}', 'RoomInvitationController@deleteRoomInvitation');
+Route::patch('/room-invitation/{id}', 'RoomInvitationController@processRoomInvitation');
 

@@ -22,8 +22,14 @@ class RoomInvitationController extends Controller
         return redirect()->back();
     }
     
-    public function deleteRoomInvitation()
+    public function processRoomInvitation($id, Request $request)
     {
-        return "deleteRoomInvitation";
+        if($request->action === "join") {
+            // 参加
+            return "join";
+        } else {
+            // 拒否
+            return "not join";
+        }
     }
 }

@@ -21,7 +21,7 @@
                     <br><br>
                     <ul class="list-group">
                         @foreach($rooms as $room)
-                    	    <a class="list-group-item"  href="{{ url("/room/".$room->id) }}">{{$room->room_name}}</a>
+                    	    <a class="list-group-item"  href="{{ url('/room/'.$room->id) }}">{{$room->room_name}}</a>
                         @endforeach
                     </ul>
                 </div>

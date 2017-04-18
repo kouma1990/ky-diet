@@ -70,7 +70,7 @@
                                         <li><a href="#">お知らせはありません</a></li>
                                     @else
                                         @foreach(Auth::user()->invited_room_invitations as $invitation)
-                                            <li><a href="#">{{$invitation->room->room_name}}への招待</a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#invitationModal{{$invitation->id}}">{{$invitation->room->room_name}}への招待</a></li>
                                         @endforeach
                                     @endif
                                 </ul>
@@ -111,6 +111,36 @@
         @endif
 
         @yield('content')
+        
+        @if(!Auth::guest())
+            @foreach(Auth::user()->invited_room_invitations as $invitation)
+                <!-- モーダル・ダイアログ -->
+                <div class="modal fade" id="invitationModal{{$invitation->id}}" tabindex="-1">
+                	<div class="modal-dialog">
+                		<div class="modal-content">
+                			<div class="modal-header">
+                				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                				<h4 class="modal-title">招待</h4>
+                			</div>
+    
+                			<div class="modal-body">
+                			    {{$invitation->inviting_user->name}}から{{$invitation->room->room_name}}への招待がありました。
+                			</div>
+                			
+                			<div class="modal-footer">
+                			    <form method="POST" action="{{url('/room-invitation/'.$invitation->id)}}">
+                			        {{ method_field('PATCH') }}
+			                        {{ csrf_field() }}
+                				    <button type="submit" class="btn btn-default" name="action" value="decline">断る</button>
+                				    <button type="submit" class="btn btn-primary" name="action" value="join">参加する</button>
+                				</form>
+                			</div>
+            	    	</div>
+                	</div>
+                </div>
+            @endforeach
+        @endif
+
     </div>
 
     <!-- Scripts -->
