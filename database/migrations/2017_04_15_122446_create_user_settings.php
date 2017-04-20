@@ -17,6 +17,7 @@ class CreateUserSettings extends Migration
             $table->increments('id');
             $table->string('color', 32);
             $table->integer('default_chart')->unsigned();
+            $table->decimal('target_weight', 4, 1)->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

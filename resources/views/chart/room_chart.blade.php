@@ -16,6 +16,16 @@
           spanGaps: true
         },
         @endforeach
+         @if(Auth::user()->user_setting->target_weight != null)
+        {
+          label: '目標体重',
+          data: [ @foreach($dates as $date) {{ Auth::user()->user_setting->target_weight }}, @endforeach],
+          backgroundColor: "rgba(255,255,0,0.4)",
+          borderColor: "rgba(255,200,0,0.4)",
+          fill:false,
+          spanGaps: true
+        },
+        @endif
         ]
       }
     });

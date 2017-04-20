@@ -16,7 +16,7 @@ class CreateDietDataTable extends Migration
         Schema::create('diet_data', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->decimal('weight');
+            $table->decimal('weight', 4, 1);
             $table->integer("user_id")->unsigned();
             $table->timestamps();
         });

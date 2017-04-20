@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserSetting extends Model
 {
     protected $table = 'user_settings';
-    protected $fillable = ['color', 'default_chart', 'user_id'];
+    protected $fillable = ['color', 'default_chart', 'target_weight', 'user_id'];
     
     public function user()
     {

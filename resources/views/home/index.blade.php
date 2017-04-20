@@ -21,9 +21,11 @@
                                 <input class="form-control" name="date" tyep="text" id="date" value="{{old("date") ?? Carbon\Carbon::today()->format("Y/m/d")}}">
                             </div>
                             
-                            <label class="col-sm-2 control-label" for="weight">W : </label>
+                            <label class="col-sm-1 control-label" for="weight">W : </label>
                             <div class="col-sm-2">
-                                <input class="form-control" name="weight" tyep="number" id="weight">
+                                <input class="form-control" name="weight" type="number" id="weight" step="0.1">
+                            </div>
+                            <div class="col-sm-1">
                             </div>
                             <div class="col-sm-2">
                     			<button type="submit" class="btn btn-default">記録</button>
@@ -37,8 +39,8 @@
                     <form method="POST" action="{{url('home/setting')}}" accept-charset="UTF-8" class="form-horizontal">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="InputColor">デフォルトグラフ：</label>
-                            <div class="col-sm-3">
+                            <label class="col-sm-2 control-label" for="default_chart">ホームグラフ：</label>
+                            <div class="col-sm-2">
                                 <select class="form-control" name="default_chart">
                                     <option value="0" {{\Auth::user()->user_setting->default_chart==0?"selected":""}}>Home</option>
                                     @foreach(Auth::user()->rooms as $room)
@@ -50,11 +52,14 @@
                             <div class="col-sm-2">
                                 <input type="color" class="form-control" id="InputColor" name="color" placeholder="色" value="{{Auth::user()->user_setting->getColorCode()}}">
                             </div>
+                            <label class="col-sm-2 control-label" for="target_weight">目標体重：</label>
                             <div class="col-sm-2">
+                                <input type="number" class="form-control" id="target_weight" name="target_weight" value="{{Auth::user()->user_setting->target_weight}}" step="0.1">
+                            </div>
+                            <div class="col-sm-1">
                                 <button type="submit" class="btn btn-default">設定</button>
                             </div>
                         </div>
-
                     </form>
                     
                 </div>

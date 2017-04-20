@@ -62,7 +62,8 @@ class HomeController extends Controller
         \Auth::user()->user_setting()
                      ->update([
                          "color" => $color,
-                         "default_chart" => $request->default_chart,       
+                         "default_chart" => $request->default_chart,
+                         "target_weight" => $request->target_weight,
                      ]);
         
         return redirect()->back();
