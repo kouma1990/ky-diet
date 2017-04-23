@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\DietData;
 
+use Facades\App\Services\Util;
+
 class RoomController extends Controller
 {
     public function __construct()
@@ -27,7 +29,8 @@ class RoomController extends Controller
             return redirect("/home");   
         }
         
-        $dates = DietData::select(["date"])->whereIn("user_id", $room->users->pluck("id"))->groupBy("date")->orderBy("date")->get()->pluck("date");
+        //$dates = DietData::select(["date"])->whereIn("user_id", $room->users->pluck("id"))->groupBy("date")->orderBy("date")->get()->pluck("date");
+        $dates= collect(Util::getDateArrayOneYear());
         return view('room.room', compact('dates', 'room'));
     }
     

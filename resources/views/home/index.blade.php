@@ -13,26 +13,7 @@
                 <div class="panel-heading">ホーム</div>
 
                 <div class="panel-body">
-                    <form method="POST" action="{{url('diet-data')}}" accept-charset="UTF-8" class="form-horizontal">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="date">Date : </label>
-                            <div class="col-sm-2">
-                                <input class="form-control" name="date" tyep="text" id="date" value="{{old("date") ?? Carbon\Carbon::today()->format("Y/m/d")}}">
-                            </div>
-                            
-                            <label class="col-sm-1 control-label" for="weight">W : </label>
-                            <div class="col-sm-2">
-                                <input class="form-control" name="weight" type="number" id="weight" step="0.1">
-                            </div>
-                            <div class="col-sm-1">
-                            </div>
-                            <div class="col-sm-2">
-                    			<button type="submit" class="btn btn-default">記録</button>
-                    		</div>
-                        </div>
-                    </form>
-                    <canvas id="myChart"></canvas>
+                    @include("layouts.main")
                     
                     <hr>
                     
@@ -73,8 +54,8 @@
 
 @section('js_script')
     @if(\Auth::user()->user_setting->default_chart==0)
-        @include("chart.home_chart")
+        @include("layouts.chart", ['users'=>[\Auth::user()]])
     @else
-        @include("chart.room_chart", ['room'=>\Auth::user()->rooms->where("id", \Auth::user()->user_setting->default_chart)->first()])
+        @include("layouts.chart", ['users'=>\Auth::user()->rooms->where("id", \Auth::user()->user_setting->default_chart)->first()->users])
     @endif
 @endsection

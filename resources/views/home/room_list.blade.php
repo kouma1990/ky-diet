@@ -37,7 +37,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-				<h4 class="modal-title">New Room</h4>
+				<h4 class="modal-title">新規ルーム作成</h4>
 			</div>
 			<form method="POST" action="{{url('/room')}}">
 			    {{ csrf_field() }}
@@ -45,8 +45,8 @@
     				<input class="form-control" name="room_name" type="text">
     			</div>
     			<div class="modal-footer">
-    				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    				<button type="submit" class="btn btn-primary">Create</button>
+    				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+    				<button type="submit" class="btn btn-primary">作成</button>
     			</div>
 			</form>
 		</div>

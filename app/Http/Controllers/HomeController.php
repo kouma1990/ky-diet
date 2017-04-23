@@ -11,6 +11,8 @@ use App\Http\Requests\CreateDietData;
 
 use Carbon\Carbon;
 
+use Facades\App\Services\Util;
+
 class HomeController extends Controller
 {
     /**
@@ -30,8 +32,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dates = \Auth::user()->diet_datas()->select(["date"])->groupBy("date")->orderBy("date")->get()->pluck("date");
+        //$dates = \Auth::user()->diet_datas()->select(["date"])->groupBy("date")->orderBy("date")->get()->pluck("date");
         $diet_data = \Auth::user()->diet_datas()->orderBy("date")->get();
+        $dates= collect(Util::getDateArrayOneYear());
         return view('home.index', compact('dates', 'diet_data'));
     }
     

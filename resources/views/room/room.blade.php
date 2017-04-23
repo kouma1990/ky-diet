@@ -13,27 +13,7 @@
                 <div class="panel-heading">{{ $room->room_name }}</div>
 
                 <div class="panel-body">
-                    <form method="POST" action="{{url('diet-data')}}" accept-charset="UTF-8" class="form-horizontal">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="date">Date : </label>
-                            <div class="col-sm-2">
-                                <input class="form-control" name="date" tyep="text" id="date" value="{{old("date") ?? Carbon\Carbon::today()->format("Y/m/d")}}">
-                            </div>
-                            
-                            <label class="col-sm-2 control-label" for="weight">W : </label>
-                            <div class="col-sm-2">
-                                <input class="form-control" name="weight" tyep="number" id="weight">
-                            </div>
-                            <div class="col-sm-2">
-                    			<button type="submit" class="btn btn-default">記録</button>
-                    		</div>
-                        </div>
-                    	<div class="form-group">
-                    	</div>
-                    </form>
-                    <canvas id="myChart"></canvas>
-                    
+                    @include("layouts.main")
                     <hr>
                     
                     <form method="POST" action="{{url('room-invitation')}}" accept-charset="UTF-8" class="form-horizontal">
@@ -62,5 +42,5 @@
 @endsection
 
 @section('js_script')
-     @include("chart.room_chart")
+    @include("layouts.chart", ['users'=>$room->users])
 @endsection
