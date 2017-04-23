@@ -4,13 +4,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.ja.min.js"></script>
 
 <script>
-    $('#date').datepicker({
-        language: 'ja',
-        endDate: "{{Carbon\Carbon::today()}}",
-    });
-</script>
-
-<script>
     var tmp_data = [ 
     @foreach($users as $user)
         [@foreach($dates as $date)  {{ count($user->diet_datas->where("date", $date))===0 ? '' : $user->diet_datas->where("date", $date)->first()->weight }}, @endforeach],
@@ -85,3 +78,9 @@
     myChart.update();
 </script>
 
+<script>
+    $('#date').datepicker({
+        language: 'ja',
+        endDate: "{{Carbon\Carbon::today()}}",
+    });
+</script>
