@@ -30,3 +30,6 @@ Route::delete('/room/{id}', 'RoomController@deleteRoom');
 Route::post('/room-invitation', 'RoomInvitationController@createRoomInvitation');
 Route::patch('/room-invitation/{id}', 'RoomInvitationController@processRoomInvitation');
 
+Route::get('/test', function() {
+    return "test";
+});
