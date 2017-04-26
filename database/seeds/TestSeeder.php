@@ -28,7 +28,7 @@ class TestSeeder extends Seeder
         ]);
         
         $user2 = User::create([
-            "name" => "t",
+            "name" => "k",
             "email" => "ttt@gmail.com",
             "password" => Hash::make("password"),
         ]);
@@ -49,19 +49,27 @@ class TestSeeder extends Seeder
         DietData::create(["date"=>"2017-04-08", "weight"=>"65.4", "user_id"=>1]);
         DietData::create(["date"=>"2017-04-09", "weight"=>"65.5", "user_id"=>1]);
         
-        DietData::create(["date"=>"2017-04-01", "weight"=>"64.7", "user_id"=>2]);
-        DietData::create(["date"=>"2017-04-02", "weight"=>"65.1", "user_id"=>2]);
-        DietData::create(["date"=>"2017-04-04", "weight"=>"65.2", "user_id"=>2]);
-        DietData::create(["date"=>"2017-04-05", "weight"=>"65.1", "user_id"=>2]);
-        DietData::create(["date"=>"2017-04-06", "weight"=>"65.0", "user_id"=>2]);
-        DietData::create(["date"=>"2017-04-08", "weight"=>"64.8", "user_id"=>2]);
-        DietData::create(["date"=>"2017-04-09", "weight"=>"64.6", "user_id"=>2]);
+        DietData::create(["date"=>"2017-04-11", "weight"=>"64.7", "user_id"=>2]);
+        DietData::create(["date"=>"2017-04-12", "weight"=>"65.1", "user_id"=>2]);
+        DietData::create(["date"=>"2017-04-14", "weight"=>"65.2", "user_id"=>2]);
+        DietData::create(["date"=>"2017-04-15", "weight"=>"65.1", "user_id"=>2]);
+        DietData::create(["date"=>"2017-04-16", "weight"=>"65.0", "user_id"=>2]);
+        DietData::create(["date"=>"2017-04-18", "weight"=>"64.8", "user_id"=>2]);
+        DietData::create(["date"=>"2017-04-19", "weight"=>"64.6", "user_id"=>2]);
+        
+        DietData::create(["date"=>"2017-04-11", "weight"=>"57.7", "user_id"=>3]);
+        DietData::create(["date"=>"2017-04-12", "weight"=>"56.5", "user_id"=>3]);
+        DietData::create(["date"=>"2017-04-14", "weight"=>"55.8", "user_id"=>3]);
+        DietData::create(["date"=>"2017-04-15", "weight"=>"55.6", "user_id"=>3]);
+        DietData::create(["date"=>"2017-04-16", "weight"=>"55.4", "user_id"=>3]);
+        DietData::create(["date"=>"2017-04-18", "weight"=>"54.8", "user_id"=>3]);
+        DietData::create(["date"=>"2017-04-19", "weight"=>"54.2", "user_id"=>3]);
         
         $room1 = Room::create(["room_name"=>"test room1", "admin_user_id" => 1]);
         $room2 = Room::create(["room_name"=>"test room2", "admin_user_id" => 2]);
         $room3 = Room::create(["room_name"=>"test room3", "admin_user_id" => 3]);
         $room1->users()->attach([1, 2]);
         $room2->users()->attach([1, 2, 3]);
-        $room3->users()->attach([1, 3]);
+        $room3->users()->attach([2, 3]);
     }
 }
