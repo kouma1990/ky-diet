@@ -15,5 +15,10 @@ class PublicController extends Controller
     {
         return view('public.top');
     }
+    
+    public function showHelp()
+    {
+        return view('public.help');
+    }
 
 }

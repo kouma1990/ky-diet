@@ -63,6 +63,7 @@
                             <li><a href="{{ url('/home') }}">ホーム</a></li>
                             <li><a href="{{ url('/home/room_list') }}">ルームリスト</a></li>
                         @endif
+                        <li><a href="{{url('/help')}}">使い方</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PublicController@showTop');
+Route::get('/help', 'PublicController@showHelp');
 
 Auth::routes();
 

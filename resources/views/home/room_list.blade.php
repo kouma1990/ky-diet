@@ -42,6 +42,7 @@
 			<form method="POST" action="{{url('/room')}}">
 			    {{ csrf_field() }}
     			<div class="modal-body">
+    			    <label>部屋名：</label>
     				<input class="form-control" name="room_name" type="text">
     			</div>
     			<div class="modal-footer">
