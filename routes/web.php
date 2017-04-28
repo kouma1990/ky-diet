@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/home');
-});
+Route::get('/', 'PublicController@showTop');
 
 Auth::routes();
 

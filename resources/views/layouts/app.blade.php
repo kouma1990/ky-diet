@@ -20,6 +20,7 @@
         ]) !!};
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
+
     @yield('head')
 
     <script>
@@ -47,7 +48,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/home') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'KY') }}
                     </a>
                 </div>
