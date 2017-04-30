@@ -9,6 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'KY') }}</title>
+    
+    <link rel="icon" href="/favicon.ico" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
